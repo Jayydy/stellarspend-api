@@ -1,6 +1,5 @@
 # stellarspend-api
 Backend API for user management, data storage, and Stellar transaction processing
-# stellarspend-app
 Web application for tracking daily, monthly, and quarterly spending on Stellar blockchain
 0verview
 StellarSpend is a comprehensive financial management platform designed specifically for the unbanked and underbanked populations worldwide. Built on the Stellar blockchain, it provides transparent, low-cost transaction tracking and budgeting tools that empower users to take control of their financial lives.
