@@ -1,12 +1,16 @@
-import { Controller, Get } from '@nestjs/common';
-import { TransactionsService } from './transactions.service';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
+import { QueryTransactionsDto } from './dto/query-transactions.dto';
 
 @Controller('transactions')
 export class TransactionsController {
-  constructor(private readonly transactionsService: TransactionsService) {}
+  @Post()
+  create(@Body() createTransactionDto: CreateTransactionDto) {
+    return { message: 'Transaction recorded', data: createTransactionDto };
+  }
 
   @Get()
-  status() {
-    return this.transactionsService.getStatus();
+  findAll(@Query() query: QueryTransactionsDto) {
+    return { message: 'Transactions list', query };
   }
 }
