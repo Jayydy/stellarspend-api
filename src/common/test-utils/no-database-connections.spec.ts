@@ -57,10 +57,10 @@ describe('Property 3: No Real Database Connections in Tests', () => {
       const mockRepo = createMockRepository<any>();
 
       // Assert - verify all methods are jest mock functions
-      const methods = ['find', 'findOne', 'create', 'update', 'delete'];
+      const methods = ['find', 'findOne', 'create', 'update', 'delete'] as const;
       
       methods.forEach(method => {
-        expect(jest.isMockFunction(mockRepo[method])).toBe(true);
+        expect(jest.isMockFunction((mockRepo as any)[method])).toBe(true);
       });
     });
 
@@ -69,10 +69,10 @@ describe('Property 3: No Real Database Connections in Tests', () => {
       const mockDb = createMockDatabaseConnection();
 
       // Assert - verify all methods are jest mock functions
-      const methods = ['connect', 'disconnect', 'query', 'transaction'];
+      const methods = ['connect', 'disconnect', 'query', 'transaction'] as const;
       
       methods.forEach(method => {
-        expect(jest.isMockFunction(mockDb[method])).toBe(true);
+        expect(jest.isMockFunction((mockDb as any)[method])).toBe(true);
       });
     });
   });
