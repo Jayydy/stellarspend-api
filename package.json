@@ -2,12 +2,12 @@
   "name": "stellarspend-api",
   "version": "1.0.0",
   "description": "Backend API for StellarSpend",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
+    "start": "node dist/main.js",
+    "dev": "ts-node -r tsconfig-paths/register src/main.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest"
@@ -17,7 +17,17 @@
     "url": "git+https://github.com/SudiptaPaul-31/stellarspend-api.git"
   },
   "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^10.x",
+    "@nestjs/core": "^10.x",
+    "@nestjs/platform-express": "^10.x",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
   "devDependencies": {
+    "@nestjs/cli": "^11.0.16",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.x",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
@@ -26,6 +36,14 @@
     "jest": "^30.2.0",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.x",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.x"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.14",
+    "@nestjs/core": "^11.1.14",
+    "@nestjs/platform-express": "^11.1.14",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
   }
 }
