@@ -10,7 +10,11 @@
     "dev": "ts-node -r tsconfig-paths/register src/main.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "test": "jest"
+    "test": "jest",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run": "npm run typeorm migration:run -- -d ormconfig.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d ormconfig.ts",
+    "migration:generate": "npm run typeorm migration:generate -- -d ormconfig.ts"
   },
   "repository": {
     "type": "git",
@@ -18,16 +22,20 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@nestjs/common": "^10.x",
-    "@nestjs/core": "^10.x",
-    "@nestjs/platform-express": "^10.x",
+    "@nestjs/common": "^11.1.14",
+    "@nestjs/core": "^11.1.14",
+    "@nestjs/platform-express": "^11.1.14",
+    "@nestjs/typeorm": "^10.0.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "pg": "^8.11.3",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.16",
+    "@nestjs/testing": "^11.1.14",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.x",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
@@ -38,12 +46,5 @@
     "ts-node": "^10.x",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.x"
-  },
-  "dependencies": {
-    "@nestjs/common": "^11.1.14",
-    "@nestjs/core": "^11.1.14",
-    "@nestjs/platform-express": "^11.1.14",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
   }
 }
