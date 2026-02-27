@@ -39,6 +39,7 @@ export interface Budget {
   period: 'monthly' | 'weekly' | 'yearly';
   startDate: Date;
   endDate: Date;
+  assetCode?: string; // currency or asset identifier (e.g. XLM, USDC)
   createdAt: Date;
   updatedAt: Date;
 }
@@ -107,6 +108,7 @@ export function createTestBudget(overrides: Partial<Budget> = {}): Budget {
     period: 'monthly',
     startDate: new Date('2024-01-01T00:00:00Z'),
     endDate: new Date('2024-01-31T23:59:59Z'),
+    assetCode: 'XLM',
     createdAt: new Date('2024-01-01T00:00:00Z'),
     updatedAt: new Date('2024-01-01T00:00:00Z'),
     ...overrides
@@ -177,6 +179,7 @@ export function createTestTransactionList(count: number = 3, overrides: Partial<
 export function createTestBudgetList(count: number = 3, overrides: Partial<Budget> = {}): Budget[] {
   const categories = ['groceries', 'entertainment', 'transportation'];
   const periods: Array<'monthly' | 'weekly' | 'yearly'> = ['monthly', 'weekly', 'yearly'];
+  const assets = ['XLM', 'USDC', 'EURC'];
   
   return Array.from({ length: count }, (_, index) => 
     createTestBudget({
@@ -185,6 +188,7 @@ export function createTestBudgetList(count: number = 3, overrides: Partial<Budge
       category: categories[index % categories.length],
       limit: 500.00 + (index * 100),
       period: periods[index % periods.length],
+      assetCode: assets[index % assets.length],
       ...overrides
     })
   );
