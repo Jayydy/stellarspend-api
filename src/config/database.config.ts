@@ -9,6 +9,6 @@ export const databaseConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME || 'stellarspend',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-  synchronize: false,
+  synchronize: true,
   logging: process.env.NODE_ENV === 'development',
 };
