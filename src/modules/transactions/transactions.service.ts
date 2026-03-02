@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindManyOptions, Between, FindOptionsWhere } from 'typeorm';
+import { Repository, Between, FindOptionsWhere } from 'typeorm';
 import { Transaction } from './transaction.entity';
 
 export interface PaginatedTransactionsResult {
@@ -152,7 +152,8 @@ export class TransactionsService {
       try {
         this.validateTransactionData(data);
       } catch (error) {
-        throw new BadRequestException(`Invalid transaction at index ${index}: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        throw new BadRequestException(`Invalid transaction at index ${index}: ${errorMessage}`);
       }
     });
 
@@ -212,7 +213,8 @@ export class TransactionsService {
         await this.create(txData);
         result.created++;
       } catch (error) {
-        result.errors.push(`Failed to sync transaction ${txData.hash || 'unknown'}: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        result.errors.push(`Failed to sync transaction ${txData.hash || 'unknown'}: ${errorMessage}`);
       }
     }
 

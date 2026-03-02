@@ -19,8 +19,9 @@ import { TransactionsService } from './transactions.service';
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
-  
-  // Creates a new transaction
+  /**
+   * Creates a new transaction
+   */
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createTransactionDto: CreateTransactionDto) {
@@ -31,7 +32,10 @@ export class TransactionsController {
     };
   }
 
-  // Retrieves paginated list of transactions
+  /**
+   * Retrieves paginated list of transactions
+   * Supports filtering by userId, category, assetCode, transactionType, and date range
+   */
   @Get()
   async findAll(@Query() query: QueryTransactionsDto) {
     const result = await this.transactionsService.findAllPaginated(
@@ -55,7 +59,9 @@ export class TransactionsController {
     };
   }
 
-  // Retrieves a single transaction by ID
+  /**
+   * Retrieves a single transaction by ID
+   */
   @Get(':id')
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     const transaction = await this.transactionsService.findById(id);
@@ -65,7 +71,9 @@ export class TransactionsController {
     };
   }
 
-  // Updates a transaction
+  /**
+   * Updates a transaction
+   */
   @Patch(':id')
   async update(
     @Param('id', ParseUUIDPipe) id: string,
@@ -78,7 +86,9 @@ export class TransactionsController {
     };
   }
 
-  // Deletes a transaction
+  /**
+   * Deletes a transaction
+   */
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id', ParseUUIDPipe) id: string) {

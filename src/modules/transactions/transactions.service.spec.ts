@@ -87,6 +87,7 @@ describe('TransactionsService', () => {
         category: 'groceries',
       });
 
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.findAndCount).toHaveBeenCalledWith(
         expect.objectContaining({
           where: expect.objectContaining({
@@ -106,6 +107,7 @@ describe('TransactionsService', () => {
       const result = await service.findAll();
 
       expect(result).toEqual(transactions);
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.find).toHaveBeenCalledWith({
         order: { stellarCreatedAt: 'DESC' },
       });
@@ -120,6 +122,7 @@ describe('TransactionsService', () => {
       const result = await service.findById('123e4567-e89b-42d3-a456-426614174001');
 
       expect(result).toEqual(transaction);
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.findOne).toHaveBeenCalledWith({
         where: { id: '123e4567-e89b-42d3-a456-426614174001' },
       });
@@ -138,6 +141,7 @@ describe('TransactionsService', () => {
       const result = await service.findByHash('a'.repeat(64));
 
       expect(result).toEqual(transaction);
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.findOne).toHaveBeenCalledWith({
         where: { hash: 'a'.repeat(64) },
       });
@@ -162,7 +166,9 @@ describe('TransactionsService', () => {
       const result = await service.create(transactionData);
 
       expect(result).toEqual(savedTransaction);
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.create).toHaveBeenCalledWith(transactionData);
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.save).toHaveBeenCalledWith(savedTransaction);
     });
 
@@ -199,6 +205,7 @@ describe('TransactionsService', () => {
       const result = await service.createBulk(transactionsData);
 
       expect(result).toEqual(savedTransactions);
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(mockRepository.save).toHaveBeenCalled();
     });
   });
