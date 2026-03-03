@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AnalyticsController } from './analytics.controller';
 import { AnalyticsService } from './analytics.service';
-import { User } from '../users/user.entity';
+import { AnalyticsProcessor } from './analytics.processor';
+import { QueueModule } from '../../queue/queue.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [QueueModule],
   controllers: [AnalyticsController],
-  providers: [AnalyticsService],
+  providers: [AnalyticsService, AnalyticsProcessor],
   exports: [AnalyticsService],
 })
 export class AnalyticsModule {}
