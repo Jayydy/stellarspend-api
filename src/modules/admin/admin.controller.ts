@@ -8,6 +8,9 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UsersService } from '../users/users.service';
+import { Roles } from '../auth/roles.decorator';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { UserRole } from '../users/user.entity';
 
 class SuspendUserDto {
   reason?: string;
@@ -20,9 +23,10 @@ class SuspendUserDto {
 @ApiTags('admin')
 @ApiBearerAuth()
 @Controller('admin')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN)
 export class AdminController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   /**
    * Suspend a user account

@@ -5,15 +5,13 @@ import { TransactionsController } from './transactions.controller';
 import { TransactionsService } from './transactions.service';
 import { User } from '../users/user.entity';
 
-@Module({
-  imports: [TypeOrmModule.forFeature([User]), NotificationsModule],
 import { Transaction } from './transaction.entity';
 import { QueueModule } from '../../queue/queue.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Transaction]), NotificationsModule, QueueModule],
+  imports: [TypeOrmModule.forFeature([User, Transaction]), NotificationsModule, QueueModule],
   controllers: [TransactionsController],
   providers: [TransactionsService],
   exports: [TransactionsService],
 })
-export class TransactionsModule {}
+export class TransactionsModule { }

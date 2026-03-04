@@ -12,7 +12,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Injectable()
 class AuthAndWalletThrottlerGuard extends ThrottlerGuard {
-  canActivate(context: ExecutionContext): boolean | Promise<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest();
     const path: string = req?.path ?? req?.url ?? '';
     if (path.startsWith('/wallet') || path.startsWith('/auth')) {
