@@ -16,8 +16,8 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 @Injectable()
 class AuthAndWalletThrottlerGuard extends ThrottlerGuard {
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const req = context.switchToHttp().getRequest();
-    const path: string = req?.path ?? req?.url ?? '';
+    const req = context.switchToHttp().getRequest<import('express').Request & { path?: string }>();
+    const path: string = req.path ?? req.url ?? '';
     if (path.startsWith('/wallet') || path.startsWith('/auth')) {
       return super.canActivate(context);
     }
