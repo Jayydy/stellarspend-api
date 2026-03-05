@@ -319,6 +319,36 @@ export class BudgetsService {
     } else if (!isUpdate) {
       throw new ValidationError('Period is required');
     }
+    // Asset code validation
+    if (budgetData.assetCode !== undefined) {
+      if (typeof budgetData.assetCode !== 'string' || budgetData.assetCode.trim().length === 0) {
+        throw new ValidationError('Asset code is required and cannot be empty');
+      }
+      if (budgetData.assetCode.length > 12) {
+        throw new ValidationError('Asset code must be at most 12 characters');
+      }
+      const assetRegex = /^[A-Z0-9]+$/i;
+      if (!assetRegex.test(budgetData.assetCode)) {
+        throw new ValidationError('Asset code must be alphanumeric');
+      }
+    } else if (!isUpdate) {
+      throw new ValidationError('Asset code is required');
+    }
+    // Asset code validation
+    if (budgetData.assetCode !== undefined) {
+      if (typeof budgetData.assetCode !== 'string' || budgetData.assetCode.trim().length === 0) {
+        throw new ValidationError('Asset code is required and cannot be empty');
+      }
+      if (budgetData.assetCode.length > 12) {
+        throw new ValidationError('Asset code must be at most 12 characters');
+      }
+      const assetRegex = /^[A-Z0-9]+$/i;
+      if (!assetRegex.test(budgetData.assetCode)) {
+        throw new ValidationError('Asset code must be alphanumeric');
+      }
+    } else if (!isUpdate) {
+      throw new ValidationError('Asset code is required');
+    }
 
     // Start date validation
     if (budgetData.startDate !== undefined) {

@@ -372,7 +372,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'USDC'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -391,6 +392,7 @@ describe('BudgetsService', () => {
             period: budgetData.period,
             startDate: budgetData.startDate,
             endDate: budgetData.endDate,
+            assetCode: budgetData.assetCode,
             createdAt: expect.any(Date),
             updatedAt: expect.any(Date)
           })
@@ -405,7 +407,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'EURC'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -635,7 +638,8 @@ describe('BudgetsService', () => {
           category: 'groceries',
           limit: 500.00,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
 
         // Act & Assert
@@ -685,6 +689,7 @@ describe('BudgetsService', () => {
           category: 'groceries',
           limit: 500.00,
           period: 'monthly' as const,
+          assetCode: 'XLM',
           endDate: new Date('2024-01-31T23:59:59Z')
         };
 
@@ -702,7 +707,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: '2024-01-01' as any,
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
 
         // Act & Assert
@@ -719,7 +725,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('invalid'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
 
         // Act & Assert
@@ -735,6 +742,7 @@ describe('BudgetsService', () => {
           category: 'groceries',
           limit: 500.00,
           period: 'monthly' as const,
+          assetCode: 'XLM',
           startDate: new Date('2024-01-01T00:00:00Z')
         };
 
@@ -752,7 +760,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: '2024-01-31' as any
+          endDate: '2024-01-31' as any,
+          assetCode: 'XLM'
         };
 
         // Act & Assert
@@ -769,7 +778,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('invalid')
+          endDate: new Date('invalid'),
+          assetCode: 'XLM'
         };
 
         // Act & Assert
@@ -786,7 +796,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-31T23:59:59Z'),
-          endDate: new Date('2024-01-01T00:00:00Z')
+          endDate: new Date('2024-01-01T00:00:00Z'),
+          assetCode: 'XLM'
         };
 
         // Act & Assert
@@ -803,7 +814,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const dbError = new Error('Database connection failed');
         mockRepository.create.mockRejectedValue(dbError);
@@ -1135,7 +1147,8 @@ describe('BudgetsService', () => {
           limit: 0.01,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1158,7 +1171,8 @@ describe('BudgetsService', () => {
           limit: 999999999.99,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1186,7 +1200,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate,
-          endDate
+          endDate,
+          assetCode: 'XLM'
         };
         
         const budget2Data = {
@@ -1195,7 +1210,8 @@ describe('BudgetsService', () => {
           limit: 300.00,
           period: 'monthly' as const,
           startDate,
-          endDate
+          endDate,
+          assetCode: 'XLM'
         };
 
         const expectedBudget1 = createTestBudget(budget1Data);
@@ -1225,7 +1241,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate,
-          endDate
+          endDate,
+          assetCode: 'XLM'
         };
         
         const budget2Data = {
@@ -1234,7 +1251,8 @@ describe('BudgetsService', () => {
           limit: 600.00,
           period: 'monthly' as const,
           startDate,
-          endDate
+          endDate,
+          assetCode: 'USDC'
         };
 
         const expectedBudget1 = createTestBudget(budget1Data);
@@ -1261,7 +1279,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         
         const budget2Data = {
@@ -1270,7 +1289,8 @@ describe('BudgetsService', () => {
           limit: 600.00,
           period: 'monthly' as const,
           startDate: new Date('2024-01-15T00:00:00Z'),
-          endDate: new Date('2024-02-15T23:59:59Z')
+          endDate: new Date('2024-02-15T23:59:59Z'),
+          assetCode: 'USDC'
         };
 
         const expectedBudget1 = createTestBudget(budget1Data);
@@ -1300,7 +1320,8 @@ describe('BudgetsService', () => {
           limit: 100.00,
           period: 'monthly' as const,
           startDate: sameDate,
-          endDate: sameDate
+          endDate: sameDate,
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1326,7 +1347,8 @@ describe('BudgetsService', () => {
           limit: 12000.00,
           period: 'yearly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-12-31T23:59:59Z')
+          endDate: new Date('2024-12-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1355,7 +1377,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate,
-          endDate
+          endDate,
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1381,7 +1404,8 @@ describe('BudgetsService', () => {
           limit: 123.45,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1404,7 +1428,8 @@ describe('BudgetsService', () => {
           limit: 500,
           period: 'monthly' as const,
           startDate: new Date('2024-01-01T00:00:00Z'),
-          endDate: new Date('2024-01-31T23:59:59Z')
+          endDate: new Date('2024-01-31T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1427,7 +1452,8 @@ describe('BudgetsService', () => {
           limit: 500.00,
           period: 'monthly' as const,
           startDate: new Date('2024-02-01T00:00:00Z'),
-          endDate: new Date('2024-02-29T23:59:59Z')
+          endDate: new Date('2024-02-29T23:59:59Z'),
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
@@ -1455,7 +1481,8 @@ describe('BudgetsService', () => {
           limit: 10.00,
           period: 'weekly' as const,
           startDate,
-          endDate
+          endDate,
+          assetCode: 'XLM'
         };
         const expectedBudget = createTestBudget(budgetData);
         mockRepository.create.mockResolvedValue(expectedBudget);
